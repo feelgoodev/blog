@@ -23,7 +23,7 @@ export default function Header() {
             hover:scale-105
             hover:text-red-400
             cursor-pointer
-            duration-300" to='/'>소개글1</Link>
+            duration-300" to='/'>소개글</Link>
             <Link className="
             border-b-2 border-red-900 border-hidden hover:border-solid
             transiton-all
