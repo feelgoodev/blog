@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,body,#root{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  @apply min-h-screen;
+  @apply max-w-screen-lg;
+  @apply m-auto;
+  @apply border border-stone-900;
+  @apply bg-black;
+  @apply text-white;
+
+  /* background-image: url('./imgs/sunlight-bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+}
