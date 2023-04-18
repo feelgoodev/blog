@@ -28,20 +28,17 @@ export default function CreatePost() {
 
     const [selectedCategory, setSelectedCategory] = useState<string|null>(null);
     const [post, setPost] = useState<PostType>({title:'',content:''});
-
-    const [postObject ,setPostObject] = useState<PostMetaDataType|null>(null);
-
     const [success, setSuccess] = useState<boolean>(false);
     const [failText, setFailText] = useState<string|null>(null);
     const [loading, setLoading] = useState(false);
     
 
     const {addDetail, updateDetail, detailQuery : {
-        isError:detailErr, isLoading:detailLoading, data:detail, isSuccess:detailSuccess
+        data:detail, isSuccess:detailSuccess
     }} = useDetail(id && id);
     
     const {addMetaData, updateMetaDataDetail, metaDataQuery : {
-        isError:metaDataErr, data:metaDataObject, isSuccess, isLoading:metaDataLoading
+        data:metaDataObject,
     }} = useMetaData();
     
     const {incrementCategory, categoryQuery : {
@@ -50,7 +47,6 @@ export default function CreatePost() {
 
     useEffect(()=>{
         if(id && category && detail && index){
-            setPostObject(metaDataObject[category][index]);
             handleCategory(category);
             setPost({title:metaDataObject[category][index].title, content:detail});
         }else{

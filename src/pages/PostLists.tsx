@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import ChapterCard from "../components/ChapterCard";
 import ContentCard from "../components/ContentCard";
 import Loading from "../components/Loading";
 import useCategory from "../hooks/useCategory";
@@ -40,38 +41,14 @@ export default function PostLists() {
                 tempArr = [...tempArr, ...metaDataObject[key]].sort((a,b)=>b.id-a.id);
             }
         }
-        
         return (
             <main className="flex">
                 <ul className="w-40 mt-10">
-                    <Link key={'전체'} to={`/postlists`}>
-                        <li className="w-30 
-                        border border-red-100 
-                        text-center mb-3 mx-2 
-                        transiton-all
-                        hover:scale-105
-                        hover:text-red-400
-                        cursor-pointer
-                        duration-300	
-                        rounded-md">전체</li>
-                    </Link>
+                    <ChapterCard/>
                     {
                         categoryArray && categoryArray.map((item)=>{
                             return(
-                                <Link 
-                                key={item.content} 
-                                to={`/postlists/${item.content}`}
-                                >
-                                    <li className="w-30 
-                                    border border-red-100 
-                                    text-center my-3 mx-2 
-                                    transiton-all
-                                    hover:scale-105
-                                    hover:text-red-400
-                                    cursor-pointer
-                                    duration-300	
-                                    rounded-md">{item.content}</li>
-                                </Link>
+                                <ChapterCard content={item.content}/>
                             )
                         })
                     }

@@ -6,7 +6,6 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Loading from './Loading';
 import Button from './Button';
-import { writeData } from '../api/firebase';
 import useCategory from '../hooks/useCategory';
 import { CategoryType } from '../pages/CreatePost';
 import { ErrorAlert, SuccessAlert } from './Alert';
@@ -58,6 +57,18 @@ const handleSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
     )
 }
 
+const handleNewCategorySubmit = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    const checkFormat = checkIfGoodFormat(e.target.value);
+    if(checkFormat){
+        setFail(true);
+        setTimeout(()=>{
+            setFail(false);
+        },3000)
+    }else{
+        setNewCategory(e.target.value);
+    }
+}
+
 
 if(selectArray.length >= 0){
     return (
@@ -91,17 +102,7 @@ if(selectArray.length >= 0){
                 onSubmit={handleSubmit}>
                     <input type='text' 
                     className='text-black m-4 p-2 rounded-md' 
-                    onChange={(e)=>{
-                        const checkFormat = checkIfGoodFormat(e.target.value);
-                        if(checkFormat){
-                            setFail(true);
-                            setTimeout(()=>{
-                                setFail(false);
-                            },3000)
-                        }else{
-                            setNewCategory(e.target.value);
-                        }
-                    }} 
+                    onChange={handleNewCategorySubmit} 
                     value={newCategory}
                     required/>
                     <Button title='등록하기' onClick={handleSubmit}/>

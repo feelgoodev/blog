@@ -1,4 +1,5 @@
- 배포된 링크: https://profound-choux-3f9265.netlify.app/
+ ## 배포된 링크
+ https://profound-choux-3f9265.netlify.app/
  
  개인적으로 블로그를 운영하게되면 제가 자유롭게 커스터마이징가능한 것을 만들고 싶다는 동기로 만들게되었습니다
 

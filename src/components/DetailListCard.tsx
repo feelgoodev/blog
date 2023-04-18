@@ -11,12 +11,14 @@ interface Props{
 export default function DetailListCard({item, index, currentPostId}:Props) {
     const navigate = useNavigate();
 
-    return (
-    <section 
-    onClick={(e) => {
+    const handleNavigate = (e:React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.preventDefault();
         navigate(`/postdetail/${item.id}`, { state: { item:{...item} } });
-    }}
+    }
+
+    return (
+    <section 
+    onClick={handleNavigate}
     className={`flex w-fit justify-start transition-all 
     hover:text-hoverBtn hover:scale-105 cursor-pointer ${currentPostId === item.id ? 'text-hoverBtn' : null}`}>
         <article className='w-5'>

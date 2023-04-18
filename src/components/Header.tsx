@@ -1,8 +1,7 @@
-import {useEffect,useState} from "react";
 import { Link } from "react-router-dom";
-import { LogIn, LogOut, ObserveAuthChange } from "../api/firebase";
-import {User} from "firebase/auth";
+import { LogIn, LogOut } from "../api/firebase";
 import { useAuthContext } from "../Context/AuthContext";
+import PageCard from "./PageCard";
 export default function Header() {
 
     const {user} = useAuthContext();
@@ -17,29 +16,11 @@ export default function Header() {
             <Link to='/'><h1 className="text-4xl">Eddy's Tech Blog</h1></Link>  
         </section>
         <section className="flex justify-center items-center h-8 gap-x-8 border-b border-red-100">
-            <Link className="
-            border-b-2 border-red-900 border-hidden hover:border-solid
-            transiton-all
-            hover:scale-105
-            hover:text-red-400
-            cursor-pointer
-            duration-300" to='/'>소개글</Link>
-            <Link className="
-            border-b-2 border-red-900 border-hidden hover:border-solid
-            transiton-all
-            hover:scale-105
-            hover:text-red-400
-            cursor-pointer
-            duration-300" to='postlists'>글 목록</Link>
+            <PageCard to="/" title="소개글"/>
+            <PageCard to="postlists" title="글목록"/>
             {
                 user?.admin ?  
-                <Link className="
-                border-b-2 border-red-900 border-hidden hover:border-solid
-                transiton-all
-                hover:scale-105
-                hover:text-red-400
-                cursor-pointer
-                duration-300" to='create'>글 생성</Link> : null
+                <PageCard to="create" title="글생성"/> : null
             }
         </section>
     </header>

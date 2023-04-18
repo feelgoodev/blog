@@ -131,13 +131,49 @@ export default function PostDetail() {
 
   const handleList = ()=>setListClicked(!listClicked);
 
+  const handlePriorPageButton = (e:React.MouseEvent<SVGElement, MouseEvent>) => {
+    e.preventDefault();
+    if(currentPostIndex !== null){
+      const priorPost = filteredArray[currentPostIndex-1];
+      if(priorPost){
+        navigate(`/postdetail/${priorPost.id}`, { state: { item:{...priorPost} } });
+
+      }else{
+        setLastPageWarning(true);
+        setTimeout(()=>{
+          setLastPageWarning(false);
+        },3000);
+      }
+    }else{
+      console.log('no more');
+    }
+  }
+
+  const handleNextPageButton = (e:React.MouseEvent<SVGElement, MouseEvent>) => {
+    e.preventDefault();
+    if(currentPostIndex !== null){
+      const nextPost = filteredArray[currentPostIndex+1];
+      if(nextPost){
+        navigate(`/postdetail/${nextPost.id}`, { state: { item:{...nextPost} } });
+
+      }else{
+        setLastPageWarning(true);
+        setTimeout(()=>{
+          setLastPageWarning(false);
+        },3000);
+      }
+    }else{
+      console.log('no more');
+    }
+  }
+
   if(isError && metaDataErr){
     return(
       <NotFound/>
     )
   }
 
-  if(isLoading && metaDataLoading){
+  if(loading){
     return(
       <Loading/>
     )
@@ -164,82 +200,61 @@ export default function PostDetail() {
             {FormatDate(id)}
           </span>
         </article>
-        <div className='w-[95%] min-h-[112px] grow flex flex-col justify-center items-start px-5 mt-5 bg-detailCardBg opacity-70 rounded-md relative'>
-          <BsFillPinAngleFill className='absolute -left-2 -top-5 text-4xl -rotate-90'/>
-          <BsFillPinAngleFill className='absolute -right-2 -top-5 text-4xl'/>
-          <section className="text-2xl absolute top-5">
-            {category}
-          </section>
-          <section className={
-            `flex flex-col grow justify-center ${listClicked ? 'min-h-[100px] my-14' : null}`
-            }>
-          {
-            listClicked && filteredArray.map((item, index)=>{
-              return(
-                <DetailListCard item={item} index={index} currentPostId={id} key={item.id}/>
-              )
-            })
-          }
-          </section>
-          <section className='flex w-full justify-between items-center absolute bottom-3 left-0 px-4'>
-            <article 
-            onClick={handleList}
-            className='text-md flex justify-center items-center transition-all hover:scale-105 hover:rotate-6 hover:text-hoverBtn cursor-pointer'>
-              <span>목록보기</span> 
-              {
-                listClicked ? 
-                <BsArrowBarUp 
-                className='ml-2 text-md'/>
-                :
-                <BsArrowBarDown 
-                className='ml-2 text-md'/>
-              }
-            </article>
-            <article className='flex text-2xl gap-x-2'>
-              <MdOutlineArrowCircleLeft 
-              onClick={(e) => {
-                e.preventDefault();
-                if(currentPostIndex !== null){
-                  const priorPost = filteredArray[currentPostIndex-1];
-                  if(priorPost){
-                    navigate(`/postdetail/${priorPost.id}`, { state: { item:{...priorPost} } });
-
-                  }else{
-                    setLastPageWarning(true);
-                    setTimeout(()=>{
-                      setLastPageWarning(false);
-                    },3000);
-                  }
-                }else{
-                  console.log('no more');
+        {
+          metaDataLoading ?
+          <Loading/>
+          :
+          <div className='w-[95%] min-h-[112px] grow flex flex-col justify-center items-start px-5 mt-5 bg-detailCardBg opacity-70 rounded-md relative'>
+            <BsFillPinAngleFill className='absolute -left-2 -top-5 text-4xl -rotate-90'/>
+            <BsFillPinAngleFill className='absolute -right-2 -top-5 text-4xl'/>
+            <section className="text-2xl absolute top-5">
+              {category}
+            </section>
+            <section className={
+              `flex flex-col grow justify-center ${listClicked ? 'min-h-[100px] my-14' : null}`
+              }>
+            {
+              listClicked && filteredArray.map((item, index)=>{
+                return(
+                  <DetailListCard item={item} index={index} currentPostId={id} key={item.id}/>
+                )
+              })
+            }
+            </section>
+            <section className='flex w-full justify-between items-center absolute bottom-3 left-0 px-4'>
+              <article 
+              onClick={handleList}
+              className='text-md flex justify-center items-center transition-all hover:scale-105 hover:rotate-6 hover:text-hoverBtn cursor-pointer'>
+                <span>목록보기</span> 
+                {
+                  listClicked ? 
+                  <BsArrowBarUp 
+                  className='ml-2 text-md'/>
+                  :
+                  <BsArrowBarDown 
+                  className='ml-2 text-md'/>
                 }
-              }}
-              className='hover:text-hoverBtn hover:scale-105 cursor-pointer'/>
-              <MdOutlineArrowCircleRight 
-              onClick={(e) => {
-                e.preventDefault();
-                if(currentPostIndex !== null){
-                  const nextPost = filteredArray[currentPostIndex+1];
-                  if(nextPost){
-                    navigate(`/postdetail/${nextPost.id}`, { state: { item:{...nextPost} } });
+              </article>
+              <article className='flex text-2xl gap-x-2'>
+                <MdOutlineArrowCircleLeft 
+                onClick={handlePriorPageButton}
+                className='hover:text-hoverBtn hover:scale-105 cursor-pointer'/>
+                <MdOutlineArrowCircleRight 
+                onClick={handleNextPageButton}
+                className='hover:text-hoverBtn hover:scale-105 cursor-pointer'/>
+              </article>
+            </section>
+          </div>
+        }
+        {
+          isLoading ? 
+          <Loading styleString='mt-5'/>
+          :
+          <pre className="w-full mt-10 px-8 text-xl pb-10" style={{whiteSpace:'pre-wrap', wordWrap:'break-word'}}>
+            {detail} 
+          </pre> 
 
-                  }else{
-                    setLastPageWarning(true);
-                    setTimeout(()=>{
-                      setLastPageWarning(false);
-                    },3000);
-                  }
-                }else{
-                  console.log('no more');
-                }
-              }}
-              className='hover:text-hoverBtn hover:scale-105 cursor-pointer'/>
-            </article>
-          </section>
-        </div>
-        <pre className="w-full mt-10 px-8 text-xl pb-10" style={{whiteSpace:'pre-wrap', wordWrap:'break-word'}}>
-          {detail} 
-        </pre> 
+        }
       </section>
       {
           lastPageWarning && <WarningAlert text={'다음 페이지가 존재하지 않습니다'}/>
