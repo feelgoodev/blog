@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ErrorAlert, SuccessAlert, WarningAlert } from "../components/Alert";
 import BasicSelect from "../components/BasicSelect";
@@ -174,7 +174,7 @@ export default function CreatePost() {
         }
     }
 
-    const handleCategory = (value:string) =>setSelectedCategory(value);
+    const handleCategory = useCallback((value:string) =>setSelectedCategory(value),[]);
 
     if(isError){
         return(
@@ -187,7 +187,7 @@ export default function CreatePost() {
             <Loading/>
         )
     }
-
+    
     return (
         <>
         <form className="flex flex-col justify-start items-center mx-30 min-h-[800px]" onSubmit={id&&index&&category ? (e:React.FormEvent<HTMLFormElement>)=>handleSubmitModification(e,Number(index),category,Number(id)) : handleSubmit}>
