@@ -10,17 +10,17 @@ export default function Header() {
     <header className="h-44 bg-stone-900 relative">
         <section className="absolute right-0 flex items-center">
             <article className="mr-1">{user?.displayName}</article>
-            <button onClick={user ? LogOut : LogIn} className="border py-1 px-5 rounded-md bg-black text-white">{user ? '로그아웃' : '로그인'}</button>
+            <button onClick={user ? LogOut : LogIn} className="border py-1 px-5 rounded-md bg-black text-white">{user ? 'Logout' : 'Login'}</button>
         </section>
         <section className="flex justify-center items-center h-28">
             <Link to='/'><h1 className="text-4xl">Eddy's Tech Blog</h1></Link>  
         </section>
         <section className="flex justify-center items-center h-8 gap-x-8 border-b border-red-100">
-            <PageCard to="/" title="소개글"/>
-            <PageCard to="postlists" title="글목록"/>
+            <PageCard to="/" title="Introduction"/>
+            <PageCard to="postlists" title="List of posts"/>
             {
                 user?.admin ?  
-                <PageCard to="create" title="글생성"/> : null
+                <PageCard to="create" title="Post Create"/> : null
             }
         </section>
     </header>

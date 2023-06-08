@@ -75,7 +75,7 @@ export default React.memo(
                 <>
                     <Box sx={{ minWidth: 120 }} className="border-b border-r border-l border-red-100 rounded-md mt-10">
                         <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label" style={{color:"white"}}>카테고리</InputLabel>
+                        <InputLabel id="demo-simple-select-label" style={{color:"white"}}>Category</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -92,7 +92,7 @@ export default React.memo(
                                 )
                             })
                         }
-                        <MenuItem key={'none'} value={'none'}>추가하기</MenuItem>
+                        <MenuItem key={'none'} value={'none'}>Add</MenuItem>
                         </Select>
                         </FormControl>
                     </Box>
@@ -105,16 +105,16 @@ export default React.memo(
                             onChange={handleNewCategorySubmit} 
                             value={newCategory}
                             required/>
-                            <Button title='등록하기' onClick={handleSubmit}/>
+                            <Button title='Submit' onClick={handleSubmit}/>
                         </form>
                     }
                     {
                         success && 
-                        <SuccessAlert text={'성공적으로 등록되었습니다'}/>
+                        <SuccessAlert text={'Submit Success'}/>
                     }
                     {
                         fail &&
-                        <ErrorAlert text={'".", "#", "$", "[", "]" 는 포함하시면 안됩니다 ^^'}/>
+                        <ErrorAlert text={'".", "#", "$", "[", "]" should not be included ^^'}/>
                     }
                     {
                         categoryLoading && 

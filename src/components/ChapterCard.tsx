@@ -19,7 +19,7 @@ export default function ChapterCard({content}:ChapterProps) {
             hover:text-red-400
             cursor-pointer
             duration-300	
-            rounded-md">{content ? content : '전체'}</li>
+            rounded-md">{content ? content : 'all'}</li>
     </Link>
   )
 }

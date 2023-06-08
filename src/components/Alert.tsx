@@ -11,7 +11,7 @@ export function ErrorAlert({text}:Props) {
     return (
     <Stack sx={{ minWidth: '1020px' }} spacing={2} className="fixed top-10 opacity-70">
         <Alert severity="error">
-        <AlertTitle>에러</AlertTitle>
+        <AlertTitle>Error</AlertTitle>
         <p>{text}</p>
         </Alert>
     </Stack>
@@ -22,7 +22,7 @@ export function WarningAlert({text}:Props) {
     return (
     <Stack sx={{ minWidth: '1020px' }} spacing={2} className="fixed top-10 opacity-70">
         <Alert severity="warning">
-        <AlertTitle>경고</AlertTitle>
+        <AlertTitle>Warning</AlertTitle>
         <p>{text}</p>
         </Alert>
     </Stack>
@@ -33,7 +33,7 @@ export function SuccessAlert({text}:Props) {
     return (
     <Stack sx={{ minWidth: '1020px' }} spacing={2} className="fixed top-10 opacity-70">
         <Alert severity="success">
-        <AlertTitle>성공</AlertTitle>
+        <AlertTitle>Success</AlertTitle>
         <p>{text}</p>
         </Alert>
     </Stack>

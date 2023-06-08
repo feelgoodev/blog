@@ -187,13 +187,13 @@ export default function PostDetail() {
           onClick={handleDeleteAlert}
           className='ml-5 transition-all
           hover:border-solid hover:text-hoverBtn 
-          hover:scale-105 border-hidden border-b border-hoverBtn cursor-pointer'> 삭제하기 </article>}
+          hover:scale-105 border-hidden border-b border-hoverBtn cursor-pointer'> Delete </article>}
           <h1 className='text-4xl'>{title}</h1>
           {user && <article 
           onClick={handleModifyAlert}
           className='mr-5 transition-all 
           hover:border-solid hover:text-hoverBtn hover:scale-105 
-          border-hidden border-b border-hoverBtn cursor-pointer'> 편집하기 </article>}
+          border-hidden border-b border-hoverBtn cursor-pointer'> Modify </article>}
         </section>
         <article className="flex justify-end w-full text-md px-5">
           <span>
@@ -225,7 +225,7 @@ export default function PostDetail() {
               <article 
               onClick={handleList}
               className='text-md flex justify-center items-center transition-all hover:scale-105 hover:rotate-6 hover:text-hoverBtn cursor-pointer'>
-                <span>목록보기</span> 
+                <span>See the list</span> 
                 {
                   listClicked ? 
                   <BsArrowBarUp 
@@ -257,22 +257,22 @@ export default function PostDetail() {
         }
       </section>
       {
-          lastPageWarning && <WarningAlert text={'다음 페이지가 존재하지 않습니다'}/>
+          lastPageWarning && <WarningAlert text={'No page Next'}/>
       }
       {
         deleteAlert && <ConfirmAlert 
         handleClose={handleDeleteCallback}
-        title={'정말 삭제하시겠습니까?'} 
-        description={'삭제하시면 되돌릴수 없습니다. 즉, 영구삭제함을 말합니다'} />
+        title={'Really want to delete?'} 
+        description={'If you delete once, you cannot undo. Are you sure?'} />
       }
       {
         modifyAlert && <ConfirmAlert 
         handleClose={handleModifyCallback}
-        title={'정말 편집하겠습니까?'} 
-        description={'제목과 내용을 수정할 수 있습니다'} />
+        title={'Really want to modify?'} 
+        description={'You can modify title and content'} />
       }
       {
-        success && <SuccessAlert text={'포스트 삭제에 성공하였습니다'}/>
+        success && <SuccessAlert text={'Success on post deletion'}/>
       }
     </>
   )

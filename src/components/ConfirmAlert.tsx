@@ -41,8 +41,8 @@ return (
         </DialogContentText>
     </DialogContent>
     <DialogActions>
-        <Button onClick={()=>handleClose(false)}>아니오</Button>
-        <Button onClick={()=>handleClose(true)}>네</Button>
+        <Button onClick={()=>handleClose(false)}>No</Button>
+        <Button onClick={()=>handleClose(true)}>Yes</Button>
     </DialogActions>
     </Dialog>
 </div>

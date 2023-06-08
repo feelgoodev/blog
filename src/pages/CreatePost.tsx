@@ -58,7 +58,7 @@ export default function CreatePost() {
         e.preventDefault();
 
         if(selectedCategory === 'none' || selectedCategory === null || post.title.length === 0 || post.content.length === 0){
-            setFailText("카레고리나 내용을 입력해주세요")
+            setFailText("Type category or content")
             setTimeout(()=>{
                 setFailText(null);
             },3000);
@@ -126,7 +126,7 @@ export default function CreatePost() {
         e.preventDefault();
 
         if(post.title.length === 0 || post.content.length === 0){
-            setFailText("제목이나 내용을 입력해주세요")
+            setFailText("Type title or content")
             setTimeout(()=>{
                 setFailText(null);
             },3000);
@@ -192,7 +192,7 @@ export default function CreatePost() {
         <>
         <form className="flex flex-col justify-start items-center mx-30 min-h-[800px]" onSubmit={id&&index&&category ? (e:React.FormEvent<HTMLFormElement>)=>handleSubmitModification(e,Number(index),category,Number(id)) : handleSubmit}>
             <section className="text-center flex-col flex mt-5">
-                <label id='title' className="text-2xl">제목</label>
+                <label id='title' className="text-2xl">Title</label>
                 <input 
                 type={'text'} 
                 id='title' 
@@ -206,7 +206,7 @@ export default function CreatePost() {
                 categoryArray && categoryArray.length >= 0 && <BasicSelect disabledStatus={id ? true : false} selectArray={categoryArray && categoryArray} handleCategory={handleCategory} fixedCategory={selectedCategory ? selectedCategory : undefined}/>
             }
             <section className="w-full text-center flex flex-col border-t border-red-100 grow mt-10 px-10">
-                <label id='content' className="text-2xl mt-5">내용</label>
+                <label id='content' className="text-2xl mt-5">Content</label>
                 <textarea 
                 className="flex flex-col w-full text-black grow mt-2 p-5" 
                 id='content' 
@@ -214,11 +214,11 @@ export default function CreatePost() {
                 onChange={e=>setPost({...post, content:e.target.value})}
                 required/>
             </section>
-            <Button title="제출하기" onClick={id&&index&&category ? (e:React.FormEvent<HTMLFormElement>)=>handleSubmitModification(e,Number(index),category,Number(id)) : handleSubmit}/>
+            <Button title="Submit" onClick={id&&index&&category ? (e:React.FormEvent<HTMLFormElement>)=>handleSubmitModification(e,Number(index),category,Number(id)) : handleSubmit}/>
         </form>
         {
             success && 
-            <SuccessAlert text={'성공적으로 포스트가 추가되었습니다.'}/>
+            <SuccessAlert text={'Post has been made successfully'}/>
         }
         {
             failText && 
